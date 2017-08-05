@@ -23,6 +23,7 @@ module.exports = {
             "error",
             "always"
         ],
-        "no-unused-vars": 0
+        "no-unused-vars": 0,
+        "no-console": 0
     }
 };

@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import './services/movieService';
 
 class App extends React.Component {
     render() {
@@ -11,7 +12,7 @@ class App extends React.Component {
     }
 }
 
-let mountpoint = document.createElement('div');
+const mountpoint = document.createElement('div');
 mountpoint.id = 'root';
 document.body.appendChild(mountpoint);
 

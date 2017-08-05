@@ -92,6 +92,9 @@ module.exports = {
             }
         ]
     },
+    node: {
+        fs: "empty"
+    },
     plugins: plugins,
     devServer: {
         host: 'localhost',
