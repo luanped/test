@@ -1,5 +1,6 @@
 import nock from 'nock';
-import MovieService, {SearchMovieUrlBase, TMDBDomain} from '../../src/services/movieService';
+import MovieService from '../../src/services/movieService';
+import UrlBuilder, {tmdbDomain} from '../../src/services/urlBuilder';
 
 describe('Movie Service', () => {
     afterEach(() => {
@@ -10,11 +11,11 @@ describe('Movie Service', () => {
         const expectedMovies = ['The Matrix', 'The Matrix Reloaded'];
         const searchTerm = 'matrix';
 
-        nock(TMDBDomain)
-            .get(SearchMovieUrlBase + searchTerm)
+        nock(tmdbDomain)
+            .get(UrlBuilder.buildSearchUrlWithNoDomain(searchTerm))
             .reply(200, JSON.stringify({ results: expectedMovies } ));
 
-        MovieService.searchMoviesFromKeywords(searchTerm).subscribe(movies => {
+        return MovieService.searchMoviesFromKeywords(searchTerm).then(movies => {
             expect(movies).toEqual(expectedMovies);
         });
     });
@@ -23,31 +24,19 @@ describe('Movie Service', () => {
         const expectedMovies = ['The Matrix', 'The Matrix Reloaded'];
         const searchTerm = 'matrix';
 
-        nock(TMDBDomain)
-            .get(SearchMovieUrlBase + searchTerm)
+        nock(tmdbDomain)
+            .get(UrlBuilder.buildSearchUrlWithNoDomain(searchTerm))
             .reply(200, JSON.stringify({ results: expectedMovies } ));
 
-        MovieService.searchMoviesFromKeywords(searchTerm).subscribe(movies => {
+        return MovieService.searchMoviesFromKeywords(searchTerm).then(movies => {
             expect(movies).not.toEqual([]);
-        });
-    });
-
-    test('should error if the request fails', () => {
-        const searchTerm = 'matrix';
-
-        nock(TMDBDomain)
-            .get(SearchMovieUrlBase + searchTerm)
-            .reply(400);
-
-        MovieService.searchMoviesFromKeywords(searchTerm).subscribe(null, error => {
-            expect(error).toEqual([]);
         });
     });
 
     test('should yield empty result set if no keywords are supplied', () => {
         const searchTerm = '';
 
-        MovieService.searchMoviesFromKeywords(searchTerm).subscribe(result => {
+        return MovieService.searchMoviesFromKeywords(searchTerm).then(result => {
             expect(result).toEqual([]);
         });
     });

@@ -22,10 +22,10 @@ class App extends React.Component {
             .switchMap(event => {
                 const searchTerm = event.target.value;
                 logger.info('Searching movie db with new search term: ', searchTerm);
-                return MovieService.searchMoviesFromKeywords(searchTerm);
+                return Rx.Observable.fromPromise(MovieService.searchMoviesFromKeywords(searchTerm));
             });
 
-        this._subscription = search$.subscribe(results => this.setState({results}));
+        this._subscription = search$.subscribe(results => this.setState({ results: results || [] }));
     }
 
     componentWillUnmount() {
