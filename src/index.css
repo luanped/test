@@ -4,6 +4,7 @@ body {
 
 .search-form__input {
     outline: none;
+    width: 300px;
 }
 
 .search-form__result-list {

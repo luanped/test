@@ -37,7 +37,7 @@ class App extends React.Component {
         return (
             <div className='search-form'>
                 <h1 className='search-form__title'>The Movie DB Search Form</h1>
-                <input ref={ r => this._input = r } className='search-form__input' />
+                <input ref={ r => this._input = r } className='search-form__input' placeholder='starting typing a movie, tv or person name...'/>
                 <ul className='search-form__result-list'>
                     {
                         this.state.results.map(result => {
