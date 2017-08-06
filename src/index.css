@@ -2,6 +2,14 @@ body {
     background: #ccc;
 }
 
+.app {
+    display: flex;
+}
+
+.search-form {
+    flex: 0 0 auto;
+}
+
 .search-form__input {
     outline: none;
     width: 300px;
@@ -15,8 +23,19 @@ body {
 .search-form__result-item {
     font-weight: bold;
 }
+.search-form__result-item:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
 
 .search-form__result-item--person {
     font-style: italic;
     color: darkblue;
+}
+
+.search-results {
+    flex: 1;
+    padding: 25px;
+    font-size: 18px;
+    color: darkgreen;
 }

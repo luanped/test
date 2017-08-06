@@ -18,4 +18,12 @@ export default class MovieService {
                 logger.error('An error occured while trying to search movies', error);
             });
     }
+
+    static getMovieDetails(movieId) {
+        return fetch(UrlBuilder.buildGetMovieDetailsUrl(movieId))
+            .then(res => res.json())
+            .catch(error => {
+                logger.error('An error occured while trying to retrieve movie id', movieId, error);
+            });
+    }
 }

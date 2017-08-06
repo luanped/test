@@ -6,7 +6,9 @@
 
 * I could have also written UI test for index.jsx using enzyme, however as it is such a simple view, I have omitted here, however happy to provide if requested
 
-* Time spent on this exercise: ~2 hours
+* Movies are clickable to print on screen more info about the movie. Similar thing can be done with people and tv, however it didn't add anything new, so did not do for this exercise
+
+* Time spent on this exercise: ~3 hours
 
 ## How to run for development
 `npm install`
