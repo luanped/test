@@ -9,6 +9,11 @@ export const SearchMovieUrlBase = '/3/search/multi?api_key=c202e0d8368f638cd5f2d
 
 export default class MovieService {
     static searchMoviesFromKeywords(keywords) {
+        if (!keywords) {
+            logger.info('removing search terms, clear results');
+            return Rx.Observable.of([]);
+        }
+
         return Rx.Observable.create(obs => {
             fetch(TMDBDomain + SearchMovieUrlBase + keywords)
                 .then(res => res.json())

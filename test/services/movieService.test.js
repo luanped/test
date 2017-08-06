@@ -14,7 +14,7 @@ describe('Movie Service', () => {
             .get(SearchMovieUrlBase + searchTerm)
             .reply(200, JSON.stringify({ results: expectedMovies } ));
 
-        MovieService.searchMoviesFromKeywords('matrix').subscribe(movies => {
+        MovieService.searchMoviesFromKeywords(searchTerm).subscribe(movies => {
             expect(movies).toEqual(expectedMovies);
         });
     });
@@ -27,7 +27,7 @@ describe('Movie Service', () => {
             .get(SearchMovieUrlBase + searchTerm)
             .reply(200, JSON.stringify({ results: expectedMovies } ));
 
-        MovieService.searchMoviesFromKeywords('matrix').subscribe(movies => {
+        MovieService.searchMoviesFromKeywords(searchTerm).subscribe(movies => {
             expect(movies).not.toEqual([]);
         });
     });
@@ -39,8 +39,16 @@ describe('Movie Service', () => {
             .get(SearchMovieUrlBase + searchTerm)
             .reply(400);
 
-        MovieService.searchMoviesFromKeywords('matrix').subscribe(null, error => {
+        MovieService.searchMoviesFromKeywords(searchTerm).subscribe(null, error => {
             expect(error).toEqual([]);
+        });
+    });
+
+    test('should yield empty result set if no keywords are supplied', () => {
+        const searchTerm = '';
+
+        MovieService.searchMoviesFromKeywords(searchTerm).subscribe(result => {
+            expect(result).toEqual([]);
         });
     });
 });
