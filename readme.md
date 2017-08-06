@@ -20,7 +20,7 @@ navigate to localhost: 4000
 ## How to build
 `npm run build`
 
-`npm run build-prod` (This will run uglification to minimise bundle and also extract css in separate module)
+`npm run build-prod` (This will run uglification to minimise bundle and also extract css in separate module, also logging will stop printing to console)
 
 ## How to test
 `npm test`
