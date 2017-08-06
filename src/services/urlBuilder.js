@@ -13,12 +13,13 @@ export default class UrlBuilder {
         return tmdbDomain + this.buildSearchUrlWithNoDomain(searchTerms);
     }
 
-    static buildSearchUrlWithNoDomain(searchTerms) {
-        return searchEndpoint + apiKey + language + query + searchTerms;
-    }
-
     static buildGetMovieDetailsUrl(movieId) {
         return tmdbDomain + this.buildGetMovieDetailsUrlWithNoDomain(movieId);
+    }
+
+    //these no domain functions are mostly to aid testing using nock
+    static buildSearchUrlWithNoDomain(searchTerms) {
+        return searchEndpoint + apiKey + language + query + searchTerms;
     }
 
     static buildGetMovieDetailsUrlWithNoDomain(movieId) {

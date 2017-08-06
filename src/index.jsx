@@ -56,6 +56,8 @@ class App extends React.Component {
         );
     }
 
+    //the view could be split into smaller components, i.e. shell containing the search form and details panel
+    //however since it was such a small app, i felt it was okay to keep it all here
     render() {
         logger.info('Rendering app', this.state.results);
         return (
