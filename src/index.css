@@ -1,0 +1,21 @@
+body {
+    background: #ccc;
+}
+
+.search-form__input {
+    outline: none;
+}
+
+.search-form__result-list {
+    list-style: none;
+    padding: 0;
+}
+
+.search-form__result-item {
+    font-weight: bold;
+}
+
+.search-form__result-item--person {
+    font-style: italic;
+    color: darkblue;
+}

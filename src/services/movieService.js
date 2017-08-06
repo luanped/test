@@ -2,7 +2,7 @@ import Rx from 'rxjs';
 import fetch from 'isomorphic-fetch';
 import LoggerFactory from '../utils/loggerFactory';
 
-const logger = LoggerFactory.createLogger('movieService');
+const logger = LoggerFactory.createLogger('movieService.js');
 
 export const TMDBDomain = 'https://api.themoviedb.org';
 export const SearchMovieUrlBase = '/3/search/multi?api_key=c202e0d8368f638cd5f2de8cc5b618f3&language=en-US&query=';

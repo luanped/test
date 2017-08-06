@@ -6,6 +6,8 @@ const productionLogger = {
     error: () => {}
 };
 
+//This is just a nice to have util class to demonstrate factory pattern, but not really providing anything towards the exercise
+//hence it's implementation is left simple on purpose and no test is provided, as it's not the focus
 export default class LoggerFactory {
     static createLogger(name) {
         if (isProduction) {

@@ -3,6 +3,11 @@ import ReactDOM from 'react-dom';
 import Rx from 'rxjs';
 import './services/movieService';
 import MovieService from './services/movieService';
+import LoggerFactory from './utils/loggerFactory';
+import './index.css';
+
+const logger = LoggerFactory.createLogger('index.jsx');
+const peopleMediaType = 'person';
 
 class App extends React.Component {
 
@@ -16,6 +21,7 @@ class App extends React.Component {
             .debounceTime(400)
             .switchMap(event => {
                 const searchTerm = event.target.value;
+                logger.info('Searching movie db with new search term: ', searchTerm);
                 return MovieService.searchMoviesFromKeywords(searchTerm);
             });
 
@@ -27,13 +33,19 @@ class App extends React.Component {
     }
 
     render() {
+        logger.info('Rendering app', this.state.results);
         return (
-            <div>
-                <input ref={ r => this._input = r } type='text' onChange={this.handleInputChange}/>
-                <ul>
+            <div className='search-form'>
+                <h1 className='search-form__title'>The Movie DB Search Form</h1>
+                <input ref={ r => this._input = r } className='search-form__input' />
+                <ul className='search-form__result-list'>
                     {
                         this.state.results.map(result => {
-                            return <li key={result.id}>{result.title} {result.name}</li>;
+                            let className = 'search-form__result-item';
+                            if (result.media_type === peopleMediaType) {
+                                className += ' search-form__result-item--person';
+                            }
+                            return <li key={result.id} className={className}>{result.title} {result.name}</li>;
                         })
                     }
                 </ul>
