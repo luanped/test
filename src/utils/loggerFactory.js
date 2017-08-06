@@ -1,5 +1,4 @@
 const isProduction = process.env.NODE_ENV === 'production'; // eslint-disable-line
-console.log('!!! ', isProduction);
 
 const productionLogger = {
     info: () => {},
